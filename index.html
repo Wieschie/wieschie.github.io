@@ -1,98 +1,129 @@
 <!DOCTYPE html>
 <html>
- <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
     <meta name=viewport content="width=device-width, initial-scale=1">
-	
-	<link rel="stylesheet" type="text/css" href="rulesofthumb.css" media="all">
-	
-	<title>Simple Rules of Thumb Calculator</title>
-	
-	<!-- big brother -->
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    <link rel="stylesheet" type="text/css" href="rulesofthumb.css" media="all">
+    
+    <title>Simple Rules of Thumb Calculator</title>
+    
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		ga('create', 'UA-65722226-1', 'auto');
-		ga('send', 'pageview');
-	</script>
-	
-	<script src="scripts/jquery-2.1.4.min.js"></script>
+      ga('create', 'UA-73086535-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    
+    <script src="scripts/jquery-2.1.4.min.js"></script>
 
-	<!-- tooltips -->
-	<script type="text/javascript" src="scripts/nhpup_1.1.js"></script>
-	
-	<!-- save hash -->
-	<script type="text/javascript" src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
-	
-	<!-- pretty math! -->
-	<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-	<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({       
-			"HTML-CSS": { scale: 150}    
-		}); 
-	</script>
-	
+    <!-- tooltips -->
+    <script type="text/javascript" src="scripts/nhpup_1.1.js"></script>
+    
+    <!-- save hash -->
+    <script type="text/javascript" src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+    
+    <!-- pretty math! -->
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({       
+      "HTML-CSS": { scale: 150}    
+      }); 
+    </script>
+
+    <!-- large number formatting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+    
   </head>
-<body>
+  <body>
 
-	<header>
-		<h1>The rules of thumb!</h1>
-		<h5>Enter your Siyalatas level to see how underleveled your Solomon is 
-		<img alt="Kappa" id="kappa" src="https://lh3.googleusercontent.com/85mHJYIs__p80RQxXMMkUafjy2nngqVZbTVUmHsoWif5pOfeh-3_LetG2eoupw69QZ2PojmOMaWelZ4k_7HkJC7P9LeEUAAIdWBkVPf5sE0ebBGA1dhgLxpuBoaUuNPo9e5wjHc">
-		</h5>
-	</header>
-	
-<div id='main'>
+    <header>
+      <h1>The rules of thumb for idle builds!</h1>
+      <h5>Enter your Siyalatas level to see how underleveled your Solomon is 
+	<img alt="Kappa" id="kappa" src="https://lh3.googleusercontent.com/85mHJYIs__p80RQxXMMkUafjy2nngqVZbTVUmHsoWif5pOfeh-3_LetG2eoupw69QZ2PojmOMaWelZ4k_7HkJC7P9LeEUAAIdWBkVPf5sE0ebBGA1dhgLxpuBoaUuNPo9e5wjHc">
+      </h5>
+    </header>
+    
+    <div id='main'>
 
-	<div class="button_container">
+      <div class="button_container">
 	<button onclick="level_siya(10)">+10</button>
 	<button onclick="level_siya(25)">+25</button>
 	<button onclick="level_siya(100)">+100</button>
 	<button onclick="level_siya(1000)">+1000</button>
 	<button onclick="mult_siya(1.1)">+10%</button>
-	</div>
-	<label id="base_label">Siyalatas / Argaiv:</label> <input type="number" name="siya" id="siya" value="0" autofocus>
-	<label>I own Morgulis <a onclick="void(0)" onmouseover="nhpup.popup('Uncheck this if you do not own Morgulis');">(<u>?</u>)</a>:</label>
-		<input type="checkbox" id="morg_owned" checked>
-	<label id="soul_label">Morgulis:</label> <input type="number" name="morg" id="morg" value="0" readonly>
+      </div>
+      
+      <!--	<div id="pup"></div> -->
+      <div class="flex">
+	<label id="base_label">Siyalatas / Argaiv:</label>
+	<input type="number" name="siya" id="siya" value="0" autofocus>
+      </div>
+
+      <div class="flex">
+	<label id="soul_label">Morgulis:</label>
+	<input type="text" name="morg" id="morg" value="0" readonly>
+      </div>
+
+      <div class="flex">
 	<label>Gold ancients <a onclick="void(0)" onmouseover="nhpup.popup('Libertas, Mammon, and Mimzee.');">(<u>?</u>)</a>:</label> 
-		<input type="number" name="gold" id="gold" value="0" readonly>
-	<label>Solomon:</label> <input type="number" name="solo" id="solo" value="0" readonly>
+	<input type="text" name="gold" id="gold" value="0" readonly>
+      </div>
+
+      <div class="flex">
+	<label>Solomon:</label>
+	<input type="text" name="solomon" id="solomon" value="0" readonly>
+      </div>
+
+      <div class="flex">
 	<label>Iris <a onclick="void(0)" onmouseover="nhpup.popup('This is a rough estimate, and assumes all other ancients are even with Siya per the rules.  If you like lazy runs drop 10 to 50 levels.');">(<u>?</u>)</a>:</label> 
-		<input type="number" name="iris" id="iris" value="0" readonly>
+	<input type="text" name="iris" id="iris" value="0" readonly>
+      </div>
+
+      <div class="flex">
 	<label>Click ancients <a onclick = "void(0)" onmouseover="nhpup.popup('Bhaal, Frags, and Pluto. If you are going with an idle or hybrid build, it is not recommended to purchase any click ancients until Siyalatas is at least 1000');">(<u>?</u>)</a>:</label> 
-		<input type="number" name="click" id="click" value="0" readonly>
-	<label>Juggernaut:</label> <input type="number" name="jugg" id="jugg" value="0" readonly>
+	<input type="text" name="click" id="click" value="0" readonly>
+      </div>
+
+      <div class="flex">
+	<label>Juggernaut:</label>
+	<input type="text" name="jugg" id="jugg" value="0" readonly>
+      </div>
+
+      <div class="flex">
 	<label>Save import <a onclick="void(0)" onmouseover="nhpup.popup('This is optional - you can still manually enter your Siyalatas level');">(<u>?</u>)</a>:</label> 
-		<input type="text" placeholder="Paste your save here." id="savegame">
+	<input type="text" placeholder="Paste your save here." id="savegame">
+      </div>
+    </div>
+
+    <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
+    <div class='formulas' id='formulas'>
+      <div id='morg_formula'>
+	$$Morgulis = (Siya+1)^2$$
+      </div>
+      $$Gold\ ancients = .927 * Siya$$
+      <div id='solomon_formula'>
+	$$Solomon = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
+      </div>
+      <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 and rounds to the nearest 3 or 8.');">
+	$$Iris = 5*\lfloor\frac{371 * \ln({Siya}) - 2075}{5}\rfloor - 2$$</a>
+
+      $$Click\ ancients = .5 * Siya$$
+      $$Juggernaut = (Siya*0.5)^{0.8}$$
+    </div>
+
+    <div id='footer'>
+      <button onclick='show_math()' id="formula_button">Show Formulas</button><br>
+  by <a href="https://github.com/alexbonjour/rules-of-thumb">alexbonjour</a> forked from /u/Wieschie's calculator <br>
+  <a href="https://github.com/alexbonjour/rules-of-thumb">Github here. Suggestion or issue?  Pay a visit.</a> <br>
+  Formula source: <a href="https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/">Updated Rules of Thumb</a>
+  
 </div>
 
-<div class='formulas' id='formulas'>
-<div id='morg_formula'>
-$$Morgulis = (Siya+1)^2$$
-</div>
-$$Gold\ ancients = .93 * Siya$$
-<div id='solo_formula'>
-$$Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}$$
-</div>
-<a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 and rounds to the nearest 3 or 8.');">
-$$Iris = 5*\lfloor\frac{371 * \ln({Siya}) - 2075}{5}\rfloor - 2$$</a>
-
-$$Click\ ancients = .5 * Siya$$
-$$Juggernaut = .1 * Siya$$
-</div>
-
-<div id='footer'>
-	<button onclick='show_math()' id="formula_button">Show/hide formulas.</button><br>
-	Crappy calculator by /u/Wieschie. 
-	Thanks to <a href="http://redd.it/339m3j">/u/Awlcer</a> (aka Nexus) and /u/Alchameth for help.  Thanks to 
-	<a href="http://redd.it/380aoj">/u/glitchypenguin</a>, <a href="http://redd.it/3823wt">/u/Kragnir</a>, and <a href="http://redd.it/3f3djb">/u/TheRealDumbledore</a> for doing the math.
-	<a href="https://github.com/wieschie/wieschie.github.io">Github here. Suggestion or issue?  Pay a visit.</a>
-</div>
-		
 
 <script src="scripts/mathmagician_2.js"></script>
 </html>

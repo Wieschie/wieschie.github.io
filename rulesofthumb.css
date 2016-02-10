@@ -17,19 +17,32 @@ header{
 	display: table;
 }
 
+.flex{
+    display:flex
+}
+
 label{
     display: inline-block;
-    float: left;
-    clear: left;
     width: 45%;
     text-align: right;
-	font: 20px Arial, sans-serif;
-	padding: 2px;
-	margin: 2px;
+    font: 20px Arial, sans-serif;
+    padding: 2px;
+    margin: 2px;
 }
+
+@media(max-width:400px){
+    .flex{
+        display:block;
+    }
+    
+    label{
+	width:100%;
+	text-align: center;
+    }
+}
+
 input {
 	display: inline-block;
-	float: left;
 	width: 200px;
 	font: 20px Arial, sans-serif;
 	padding: 2px;
