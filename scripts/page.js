@@ -269,7 +269,7 @@ function formatGameNumber(someNumber) {
 
     var digits = numstring.length;
     var suffixIndex = 0;
-    var suffixes = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "O", "N", "d"];
+    var suffixes = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "O", "N", "d", "U", "D", "!", "@", "#", "$", "%", "^", "&", "*"];
     while(digits > 5 && suffixIndex < (suffixes.length-1))
     {
         numstring = numstring.slice(0,-3);
