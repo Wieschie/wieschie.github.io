@@ -73,12 +73,12 @@
           <div class="sectiontitle">Idle</div>
           <div class="flex">
             <label>Siyalatas, Argaiv <div class="sublabel">(e.g. 4000 or 4e3)</div>:</label>
-            <input class="calcinput" type="number" name="idle_siya" id="idle_siya" value="0" autofocus>
+            <input class="calcinput" type="text" name="idle_siya" id="idle_siya" value="0" autofocus>
           </div>
           
           <div class="flex">
-             <label><a onclick="void(0)" onmouseover="nhpup.popup('Transcendent Power (TP) is found on the Outsiders tab.  It is 0 if you have not yet transcended.');"><label>Transcendent Power <div class="sublabel">(1.35% = 1.35)</div></a>:</label>
-            <input class="calcinput" type="text" pattern="[0-9]\." name="idle_tp" id="idle_tp" value="0.00" step="0.01">
+             <label><a onclick="void(0)" onmouseover="nhpup.popup('Transcendent Power (TP) is found on the Outsiders tab. Use 0 if you have not yet transcended.');"><label>Transcendent Power <div class="sublabel">(1.35% = 1.35)</div></a>:</label>
+            <input class="calcinput" type="text" name="idle_tp" id="idle_tp" value="0.0">
           </div>
 
           <div class="flex">
@@ -200,7 +200,7 @@
 
         <!-- ************** OUTSIDERS ACCORDION ************** -->
 
-        <h3>Outsiders</h3>
+        <h3>Outsiders (Ancient Souls)</h3>
         <div id="outsiders_accordion">
           <div class="flex">
             <label>Ancient Souls:</label>
@@ -368,26 +368,38 @@
         <!-- ************** HOWTO ACCORDION ************** -->        
         <h3>How to use this calculator</h3>
         <div id="howto_accordion">
-          <b>Q: Why use a calculator at all?</b>
+          <b>Q: Why use an Ancient Calculator at all?</b>
           <p></p>
           When leveling ancients in the game of Clicker Heroes, there are more efficient and less efficent ways to spend Hero Souls on upgrading Ancients.   Clicker Heroes calculators are designed to help you level your ancients in a more efficient way.    This calculator uses these <a href="https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance/">formulas</a>.
           <p></p>
-          This calculator is also simple to use because you only have to enter one value for Siyalatas to know how you should optimally level the ancients.  This is usually easier to use for mobile Clicker Heroes on Android or iPhone/iOS.
+          This calculator is also simple to use because you only have to enter a few values to know how you should optimally level the ancients.  This is usually easier to use for mobile Clicker Heroes on Android or iPhone/iOS.
           
           <hr>
           
-          <b>Q: So how do I use this calculator?</b>
+          <b>Q: So how do I use the Ancient calculator?</b>
           <p></p>
           Step by step do the following:
           <ol>
             <li> Enter your Siyalatas value.
             <li> Enter your Transcendent Power, 0 if you have not yet transcended.
             <li> Raise the ancients to the levels in the calculator for all other Ancients
-            <li> Press "+100" (or other button of your choice)
+            <li> Press "+100", "x2", or another button of your choice
             <li> Go to step 3.
           </ol>
           
           You can level up by +10, +100, +10%, or even enter in any number you'd like in to the Siyalatas field.  If you regularly follow this pattern, you'll never be far from an optimal Ancient level.
+
+          <hr>
+          <b>Q: How do I use the Outsiders (Ancient Souls) calculator?</b>
+          <p></p>
+          Step by step do the following:
+          <ol>
+            <li> When you transcend, choose "Respec on Transcension"
+            <li> Enter the amount of Ancient Souls you now have.
+            <li> Select the playstyle you are using: Idle, Hybrid, or Active 
+            <li> There is more than one way you can spend your Ancient Souls.  Choose a column that you'd like to use and Spend your Ancient Souls on those outsiders.
+          </ol>
+
         </div>
 
       </div>
