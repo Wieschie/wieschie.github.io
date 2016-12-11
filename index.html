@@ -1,98 +1,423 @@
 <!DOCTYPE html>
 <html>
- <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
     <meta name=viewport content="width=device-width, initial-scale=1">
-	
-	<link rel="stylesheet" type="text/css" href="rulesofthumb.css" media="all">
-	
-	<title>Simple Rules of Thumb Calculator</title>
-	
-	<!-- big brother -->
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    <link rel="stylesheet" type="text/css" href="rulesofthumb.css" media="all">
+    
+    <title>Simple Rules of Thumb Calculator for Clicker Heroes</title>
+    
+    
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-		ga('create', 'UA-65722226-1', 'auto');
-		ga('send', 'pageview');
-	</script>
-	
-	<script src="scripts/jquery-2.1.4.min.js"></script>
+    <script>
+      $(function() {
+        $( "#accordion" ).accordion({
+        collapsible: true,
+        heightStyle: "content"
+        });
+      });
+    </script>
 
-	<!-- tooltips -->
-	<script type="text/javascript" src="scripts/nhpup_1.1.js"></script>
-	
-	<!-- save hash -->
-	<script type="text/javascript" src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
-	
-	<!-- pretty math! -->
-	<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-	<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({       
-			"HTML-CSS": { scale: 150}    
-		}); 
-	</script>
-	
+    <!-- tooltips -->
+    <script type="text/javascript" src="scripts/nhpup_1.1.js"></script>
+    
+    <!-- save hash -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
+    
+    <!-- pretty math! -->
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({       
+      "HTML-CSS": { scale: 150}    
+      }); 
+    </script>
+
+    <!-- large number formatting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+
+    <script src="scripts/spreadsheet.js"></script>
+    <script src="scripts/rot_calcs.js"></script>
+    <script src="scripts/page.js"></script>
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/P/HAJycnAD///8AZY9WAJXMgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAABEBAyIiIiIiAQEDAAAAAAIBAQMjIyMjIgEBAwAAAAACAQEDIyMjIyIBAQMAAAAAAgEBAyMjIyMiAQEDAAAAAAIBAQMDAwMzAgEBAwAAAAACAQEDBVVVVAIBAQMEREREAgEBAwAAAAACAQEDMzMzMzIBARAAAAAAABGAAAAAgAAAAIVQAACAAAAAhVAAAIAAAACFUAAAgAAAAIVAAACKiAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAA" rel="icon" type="image/x-icon" />
   </head>
-<body>
 
-	<header>
-		<h1>The rules of thumb!</h1>
-		<h5>Enter your Siyalatas level to see how underleveled your Solomon is 
-		<img alt="Kappa" id="kappa" src="https://lh3.googleusercontent.com/85mHJYIs__p80RQxXMMkUafjy2nngqVZbTVUmHsoWif5pOfeh-3_LetG2eoupw69QZ2PojmOMaWelZ4k_7HkJC7P9LeEUAAIdWBkVPf5sE0ebBGA1dhgLxpuBoaUuNPo9e5wjHc">
-		</h5>
-	</header>
-	
-<div id='main'>
+  <body>
 
-	<div class="button_container">
-	<button onclick="level_siya(10)">+10</button>
-	<button onclick="level_siya(25)">+25</button>
-	<button onclick="level_siya(100)">+100</button>
-	<button onclick="level_siya(1000)">+1000</button>
-	<button onclick="mult_siya(1.1)">+10%</button>
-	</div>
-	<label id="base_label">Siyalatas / Argaiv:</label> <input type="number" name="siya" id="siya" value="0" autofocus>
-	<label>I own Morgulis <a onclick="void(0)" onmouseover="nhpup.popup('Uncheck this if you do not own Morgulis');">(<u>?</u>)</a>:</label>
-		<input type="checkbox" id="morg_owned" checked>
-	<label id="soul_label">Morgulis:</label> <input type="number" name="morg" id="morg" value="0" readonly>
-	<label>Gold ancients <a onclick="void(0)" onmouseover="nhpup.popup('Libertas, Mammon, and Mimzee.');">(<u>?</u>)</a>:</label> 
-		<input type="number" name="gold" id="gold" value="0" readonly>
-	<label>Solomon:</label> <input type="number" name="solo" id="solo" value="0" readonly>
-	<label>Iris <a onclick="void(0)" onmouseover="nhpup.popup('This is a rough estimate, and assumes all other ancients are even with Siya per the rules.  If you like lazy runs drop 10 to 50 levels.');">(<u>?</u>)</a>:</label> 
-		<input type="number" name="iris" id="iris" value="0" readonly>
-	<label>Click ancients <a onclick = "void(0)" onmouseover="nhpup.popup('Bhaal, Frags, and Pluto. If you are going with an idle or hybrid build, it is not recommended to purchase any click ancients until Siyalatas is at least 1000');">(<u>?</u>)</a>:</label> 
-		<input type="number" name="click" id="click" value="0" readonly>
-	<label>Juggernaut:</label> <input type="number" name="jugg" id="jugg" value="0" readonly>
-	<label>Save import <a onclick="void(0)" onmouseover="nhpup.popup('This is optional - you can still manually enter your Siyalatas level');">(<u>?</u>)</a>:</label> 
-		<input type="text" placeholder="Paste your save here." id="savegame">
-</div>
+    <header>
+      <h1>Simple Rules of Thumb Calculator</h1>
+      Simple calculator for leveling ancients in the game <a href="http://www.clickerheroes.com">Clicker Heroes</a>.
+  </header>
+    
+    <div id='main'>
 
-<div class='formulas' id='formulas'>
-<div id='morg_formula'>
-$$Morgulis = (Siya+1)^2$$
-</div>
-$$Gold\ ancients = .93 * Siya$$
-<div id='solo_formula'>
-$$Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}$$
-</div>
-<a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 and rounds to the nearest 3 or 8.');">
-$$Iris = 5*\lfloor\frac{371 * \ln({Siya}) - 2075}{5}\rfloor - 2$$</a>
+      <div class="button_container">
+        <button onclick="level_up(10)">+10</button>
+        <button onclick="level_up(25)">+25</button>
+        <button onclick="level_up(100)">+100</button>
+        <button onclick="level_up(1000)">+1000</button>
+      </div>
+      <div class="button_container">
+        <button onclick="multiply_up(1.1)">+10%</button>
+        <button onclick="multiply_up(2.0)">x2</button>
+      </div>
+      
+      <div id="accordion">
+        <!-- ************** IDLE BUILDS ACCORDION ************** -->
+        <h3>Ancients - Enter your Siyalatas Level</h3>
 
-$$Click\ ancients = .5 * Siya$$
-$$Juggernaut = .1 * Siya$$
-</div>
+        <div id="idle_accordion">
+          <div class="sectiontitle">Idle</div>
+          <div class="flex">
+            <label>Siyalatas, Argaiv <div class="sublabel">(e.g. 4000 or 4e3)</div>:</label>
+            <input class="calcinput" type="text" name="idle_siya" id="idle_siya" value="0" autofocus>
+          </div>
+          
+          <div class="flex">
+             <label><a onclick="void(0)" onmouseover="nhpup.popup('Transcendent Power (TP) is found on the Outsiders tab. Use 0 if you have not yet transcended.');"><label>Transcendent Power <div class="sublabel">(1.35% = 1.35)</div></a>:</label>
+            <input class="calcinput" type="text" name="idle_tp" id="idle_tp" value="0.0">
+          </div>
 
-<div id='footer'>
-	<button onclick='show_math()' id="formula_button">Show/hide formulas.</button><br>
-	Crappy calculator by /u/Wieschie. 
-	Thanks to <a href="http://redd.it/339m3j">/u/Awlcer</a> (aka Nexus) and /u/Alchameth for help.  Thanks to 
-	<a href="http://redd.it/380aoj">/u/glitchypenguin</a>, <a href="http://redd.it/3823wt">/u/Kragnir</a>, and <a href="http://redd.it/3f3djb">/u/TheRealDumbledore</a> for doing the math.
-	<a href="https://github.com/wieschie/wieschie.github.io">Github here. Suggestion or issue?  Pay a visit.</a>
-</div>
-		
+          <div class="flex">
+            <label>Solomon <div class="sublabel">(Ascension Zone &le; <input id="zoneInput" class="calcinput" name="zoneInput" type="number" step="500" value="1500">)</div>:</label>
+            <div class="resultvalue" id="idle_solomon">0</div>
+          </div>
+          
+          <div class="flex">
+            <label>Atman:</label> 
+            <div class="resultvalue" id="idle_atman">0</div>
+          </div>
 
-<script src="scripts/mathmagician_2.js"></script>
+          <div class="flex">
+            <label>Bubos:</label> 
+            <div class="resultvalue" id="idle_bubos">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Chronos:</label> 
+            <div class="resultvalue" id="idle_chronos">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Dogcog:</label> 
+            <div class="resultvalue" id="idle_dogcog">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Dora:</label> 
+            <div class="resultvalue" id="idle_dora">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Fortuna:</label> 
+            <div class="resultvalue" id="idle_fortuna">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Revolc:</label> 
+            <div class="resultvalue" id="idle_revolc">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Kuma:</label> 
+            <div class="resultvalue" id="idle_kuma">0</div>
+          </div>
+          <div class="flex">
+            <label>Libertas, Mammon, Mimzee:</label> 
+            <div class="resultvalue" id="idle_gold">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Morgulis:</label>
+            <div class="resultvalue" id="idle_morg">0</div>
+          </div>
+          
+          <div class="flex">
+            <label>Nogardnit:</label>
+            <div class="resultvalue" id="idle_tindragon">0</div>
+          </div>
+          
+          <hr>
+          <div class="sectiontitle">Hybrid</div>
+
+          <div class="flex">
+            <label>Bhaal, Fragsworth:</label> 
+            <div class="resultvalue" id="hybrid_click">0</div>
+          </div>
+          
+          <div class="flex">
+            <label>Juggernaut:</label>
+            <div class="resultvalue" id="hybrid_jugg">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Skills, Vaagur:</label>
+            <div class="resultvalue" id="hybrid_skills">0</div>
+          </div>
+
+          <hr>
+          <div class="flex">
+            <label>Number Format:</label>
+                <div class="resultvaluenoborder">
+                  <select id="numberFormat">
+                    <option value="game">Game Format</option>
+                    <option value="numbers">Simple Numbers</option>
+                    <option value="scientific">Scientific</option>
+                  </select>  
+                </div>
+          </div>
+
+          <div class='formulas' id='idle_formulas'>
+            $$Argaiv = Siya$$
+            <div id='idle_solomon_formula'>
+              $$Solomon[TP>0] = Siya^{0.8} * Alpha^{0.4}$$
+              $$Alpha = 1.4067*ln(1+TP)/ln(\left\lceil \frac{AcensionZone}{500.0} * 0.005 \right\rceil + 1.14)$$
+              
+              $$Solomon[TP==0] = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
+            </div>
+            <div id='idle_morg_formula'>
+              $$Morgulis = Siya^2$$
+            </div>
+            
+            $$Bubos(simple) = 2.8*ln(Siya) - 1.4*ln(2) - 5.94$$ 
+            $$Chronos(simple) = 2.75*ln(Siya) - 5.1$$
+            $$Libertas\ Mammon\ Mimzee = .926 * Siya$$
+            $$Dora(simple) = 2.877*ln(Siya) - 1.4365·ln(\frac{1}{99}) - 9.63$$
+            $$Dogcog(simple) = 2.844·ln(Siya) - 1.422·ln(\frac{100}{99}) - 7.232$$
+            $$Fortuna(simple) = 2.875·ln(Siya) - 1.4375·ln(\frac{1}{9}) - 9.3$$
+            $$Atman[TP>0](simple) = 2.832*ln(Siya) - 1.416*ln(alpha) -1.416*ln(\frac{1}{3}) - 6.613$$
+            $$Kuma[TP>0](simple) = 2.88*ln(Siya) - 1.44*ln(alpha) - 1.44*ln(1.25) - 10.42$$
+            $$Nogardnit = Libertas^{0.8}$$
+
+          </div>
+
+          <button onclick='show_math()' id="idle_formula_button">Show Formulas</button><br>
+
+        </div>
+
+        <!-- ************** OUTSIDERS ACCORDION ************** -->
+
+        <h3>Outsiders (Ancient Souls)</h3>
+        <div id="outsiders_accordion">
+          <div class="flex">
+            <label>Ancient Souls:</label>
+            <input class="calcinput" type="number" name="outsiders_as" id="outsiders_as" value="0" autofocus>
+          </div>
+
+          <div class="flex">
+            <label>Play Style:</label>
+            <select class="calcinput" id="outsiders_playstyle">
+              <option value="idle" selected>Idle</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="active">Active</option>
+            </select>
+          </div>
+
+          <div class="flex" align=right>
+            <label></label>
+
+            <div class="resultvaluenoborder"><div class="newpic hideafter"><img src="images/new.png" alt="New!"></div><div class="newthing"><a href="https://docs.google.com/spreadsheets/d/1m09HoNiLW-7t96gzguG9tU_HHaRrDrtMpAoAuukLB4w/htmlview?sle=true#">Spreadsheet</a></div></div>
+
+            <div class="resultvaluenoborder"><a href="https://www.reddit.com/r/ClickerHeroes/comments/4rrbpi/math_outsiders_rule_of_thumb/">Rules of Thumb</a></div>
+
+          </div>
+          
+          <div class="flex">
+            <label>Xyliqil:</label>
+            <div class="resultvalue" id="outsiders_xyl_sheet">0</div>
+            <div class="resultvalue" id="outsiders_xyl">0</div>
+          </div>
+          
+          <div class="flex">
+            <label>Chor'gorloth:</label>
+            <div class="resultvalue" id="outsiders_chor_sheet">0</div>
+            <div class="resultvalue" id="outsiders_chor">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Phandoryss:</label>
+            <div class="resultvalue" id="outsiders_phan_sheet">0</div>
+            <div class="resultvalue" id="outsiders_phan">0</div>
+          </div>
+          
+          <div class="flex">
+            <label>Borb:</label>
+            <div class="resultvalue" id="outsiders_borb_sheet">0</div>
+            <div class="resultvalue" id="outsiders_borb">0</div>
+          </div>
+          
+          <div class="flex">
+            <label>Ponyboy:</label>
+            <div class="resultvalue" id="outsiders_pony_sheet">0</div>
+            <div class="resultvalue" id="outsiders_pony">0</div>
+          </div>
+        </div>
+
+        <!-- ************** HYBRID BUILDS ACCORDION ************** -->
+<!--
+        <h3>Hybrid Builds - Enter your Siyalatas Level</h3>
+        <div id="hybrid_accordion">
+          <div class="flex">
+            <label>Siyalatas, Argaiv:</label>
+            <input type="number" name="hybrid_siya" id="hybrid_siya" value="0" autofocus>
+          </div>
+          
+          <div class="flex">
+            <label>Morgulis:</label>
+            <input type="text" name="hybrid_morg" id="hybrid_morg" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Libertas, Mammon, Mimzee:</label> 
+            <input type="text" name="hybrid_gold" id="hybrid_gold" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Solomon:</label>
+            <input type="text" name="hybrid_solomon" id="hybrid_solomon" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Bhaal, Fragsworth, Pluto:</label> 
+            <input type="text" name="hybrid_click" id="hybrid_click" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Juggernaut:</label>
+            <input type="text" name="hybrid_jugg" id="hybrid_jugg" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Iris Range <a onclick="void(0)" onmouseover="nhpup.popup('Iris value depends largely on play style and preference.');">(<u>?</u>)</a>:</label> 
+            <input type="text" name="hybrid_iris" id="hybrid_iris" value="0" readonly>
+          </div>
+-->          
+          <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
+<!--
+          <div class='formulas' id='hybrid_formulas'>
+            <div id='hybrid_morg_formula'>
+              $$Morgulis = (Siya+1)^2$$
+            </div>
+            $$Libertas\ Mammon\ Mimzee = .927 * Siya$$
+            <div id='hybrid_solomon_formula'>
+              $$Solomon =                1.32 * \ln{(4.65 * Siya^2)}^{0.4} * Siya^{0.8}$$
+            </div>
+            $$Bhaal\ Fragsworth\ Pluto = .5 * Siya$$
+            $$Juggernaut = (Siya*0.5)^{0.8}$$
+            <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 for the lower bound and 302 for the upper bound and rounds both to the nearest 3 or 8.');">
+              $$Iris Lower Bound = 5*\lfloor\frac{371 * \ln({Siya}) - 1075 - 1000}{5}\rfloor - 2$$
+              $$Iris Upper Bound = 5*\lfloor\frac{371 * \ln({Siya}) - 1075 - 302}{5}\rfloor - 2$$</a>
+          </div>
+          
+          <button onclick='show_math()' id="hybrid_formula_button">Show Formulas</button><br>
+        </div>
+        -->
+
+        <!-- ************** ACTIVE BUILDS ACCORDION ************** -->        
+<!--
+        <h3>Active Builds - Enter your Fragsworth Level</h3>
+        <div id="active_accordion">
+          <div class="flex">
+            <label>Fragsworth, Argaiv:</label>
+            <input type="number" name="active_frags" id="active_frags" value="0" autofocus>
+          </div>
+
+          <div class="flex">
+            <label>Bhaal:</label>
+            <input type="text" name="active_bhaal" id="active_bhaal" value="0" readonly>
+          </div>
+
+          <div class="flex">
+            <label>Juggernaut:</label>
+            <input type="text" name="active_jugg" id="active_jugg" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Mammon, Mimzee, Pluto:</label> 
+            <input type="text" name="active_gold" id="active_gold" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Morgulis:</label>
+            <input type="text" name="active_morg" id="active_morg" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Solomon:</label>
+            <input type="text" name="active_solomon" id="active_solomon" value="0" readonly>
+          </div>
+-->          
+          <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
+<!--
+          <div class='formulas' id='active_formulas'>
+            <div id='active_bhaal_formula'>$$Bhaal = Frags$$</div>
+            $$Juggernaut = Frags^{0.8}$$
+            $$Mammon\ Mimzee\ Pluto = .927 * Frags$$
+            <div id='active_morg_formula'>$$Morgulis = (Frags+1)^2$$</div>
+            <div id='active_solomon_formula'>
+              $$Solomon = Minimum( Frags, 1.21 * \ln{(3.73 * Frags^2)}^{0.4} * Frags^{0.8} )$$
+            </div>
+          </div>
+          <button onclick='show_math()' id="active_formula_button">Show Formulas</button><br>
+        </div>
+-->
+
+        <!-- ************** HOWTO ACCORDION ************** -->        
+        <h3>How to use this calculator</h3>
+        <div id="howto_accordion">
+          <b>Q: Why use an Ancient Calculator at all?</b>
+          <p></p>
+          When leveling ancients in the game of Clicker Heroes, there are more efficient and less efficent ways to spend Hero Souls on upgrading Ancients.   Clicker Heroes calculators are designed to help you level your ancients in a more efficient way.    This calculator uses these <a href="https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance/">formulas</a>.
+          <p></p>
+          This calculator is also simple to use because you only have to enter a few values to know how you should optimally level the ancients.  This is usually easier to use for mobile Clicker Heroes on Android or iPhone/iOS.
+          
+          <hr>
+          
+          <b>Q: So how do I use the Ancient calculator?</b>
+          <p></p>
+          Step by step do the following:
+          <ol>
+            <li> Enter your Siyalatas value.
+            <li> Enter your Transcendent Power, 0 if you have not yet transcended.
+            <li> Raise the ancients to the levels in the calculator for all other Ancients
+            <li> Press "+100", "x2", or another button of your choice
+            <li> Go to step 3.
+          </ol>
+          
+          You can level up by +10, +100, +10%, or even enter in any number you'd like in to the Siyalatas field.  If you regularly follow this pattern, you'll never be far from an optimal Ancient level.
+
+          <hr>
+          <b>Q: How do I use the Outsiders (Ancient Souls) calculator?</b>
+          <p></p>
+          Step by step do the following:
+          <ol>
+            <li> When you transcend, choose "Respec on Transcension"
+            <li> Enter the amount of Ancient Souls you now have.
+            <li> Select the playstyle you are using: Idle, Hybrid, or Active 
+            <li> There is more than one way you can spend your Ancient Souls.  Choose a column that you'd like to use and Spend your Ancient Souls on those outsiders.
+          </ol>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="flex">
+      <label>Save import <a onclick="void(0)" onmouseover="nhpup.popup('This is optional - you can still manually enter your levels');">(<u>?</u>)</a>:</label> 
+      <input type="text" placeholder="Paste your save here." id="savegame">
+    </div>
+
+
+    <div id='footer'>
+      Check out <a href="http://alexbonjour.github.io/clicker-lister/">Clicker Lister for Clicker Heroes</a> 
+      <hr width="50%">
+      Site by <a href="https://github.com/editpes/ch-rules-of-thumb">Ismail H.</a> forked from /u/Wieschie's calculator <br>
+      <div class="hideafter">"New" Icon by <a href="http://dryicons.com">http://dryicons.com</a><br></div>
+      <a href="https://github.com/alexbonjour/rules-of-thumb">Github here. Suggestion or issue?  Pay a visit.</a> <br>
+      Formula sources: <a href="https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance">Reddit Post - Math and Transcendance</a>, <a href="https://www.reddit.com/r/ClickerHeroes/comments/4rrbpi/math_outsiders_rule_of_thumb/">Reddit Post - [Math] - Outsiders Rule of Thumb</a>, <a href="https://docs.google.com/spreadsheets/d/1m09HoNiLW-7t96gzguG9tU_HHaRrDrtMpAoAuukLB4w/htmlview?sle=true#">AS Build Spreadsheet - Data copied Nov 13, 2016</a>
+    </div>
+
 </html>

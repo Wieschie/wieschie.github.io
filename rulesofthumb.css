@@ -1,105 +1,150 @@
 *{
-	margin-left:auto;
-	margin-right:auto;
-	text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
 }
 
 header{
-	font: 28px Arial, sans-serif;
+    font: 28px Arial, sans-serif;
+}
+
+.sectiontitle{
+    font-size: 180%;
+
 }
 
 #kappa {
-	width:64px;
-	height:64px;
-	vertical-align:middle;
+    width:64px;
+    height:64px;
+    vertical-align:middle;
 }
 .button_container {
-	display: table;
+    display: table;
+    padding: 8px;
+}
+
+.flex{
+    display:flex
 }
 
 label{
     display: inline-block;
-    float: left;
-    clear: left;
     width: 45%;
     text-align: right;
-	font: 20px Arial, sans-serif;
-	padding: 2px;
-	margin: 2px;
+    font: 20px Arial, sans-serif;
+    padding: 2px;
+    margin: 2px;
 }
-input {
-	display: inline-block;
-	float: left;
-	width: 200px;
-	font: 20px Arial, sans-serif;
-	padding: 2px;
-	margin: 2px;
+
+.sublabel {
+    display: inline-block;
+    font: 13px Arial, sans-serif;
 }
+
+#zoneInput {
+    width: 50px;
+}
+
+.resultvaluenoborder,
+.resultvalue {
+    width: 205px;
+    margin: 2px;
+}
+
+.resultvalue {
+    border-style: solid;
+    border-width: 1px;
+}
+
+@media(max-width:400px){
+    .flex{
+        display:block;
+    }
+}
+
+.calcinput {
+    display: inline-block;
+    width: 200px;
+    font: 20px Arial, sans-serif;
+    padding: 2px;
+    margin: 2px;
+    background-color: #99FF99;
+}
+
 button {
-	float: left;
-	font: 20px Arial, sans-serif;
-	padding: 2px;
-	margin: 2px;
+    float: left;
+    font: 20px Arial, sans-serif;
+    padding: 2px;
+    margin: 2px;
 }
 
-#formula_button {
-	float: none;
-	font-size: 16px;
-	margin-bottom: 12px;
-}
 
-/* morg checkbox */
-#morg_owned {
-margin-bottom:20px;
-margin-top:5px;
-float:left;
-width:20px;
-height:20px
+
+#idle_formula_button, 
+#hybrid_formula_button,
+#active_formula_button {
+    float: none;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 12px;
 }
 
 /* tooltips */
 #pup {
-  position:absolute;
-  z-index:200; /* aaaalways on top*/
-  padding: 3px;
-  margin-left: 10px;
-  margin-top: 5px;
-  width: 300px;
-  border: 1px solid black;
-  background-color: #3C3C3C;
-  color: white;
-  font: 18px Arial, sans-serif;
-  
-  /* outline text in popups.  Don't like this for now */
-  /*
+    position:absolute;
+    z-index:200; /* aaaalways on top*/
+    padding: 3px;
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 300px;
+    border: 1px solid black;
+    background-color: #3C3C3C;
+    color: white;
+    font: 18px Arial, sans-serif;
+    
+/* outline text in popups.  Don't like this for now */
+/*
   text-shadow: #000 0px 0px 1px, #000 0px 0px 1px,   #000 0px 0px 1px,
-             #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;
- */
+  #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;
+  */
 }
 
 #main {
-	overflow:auto;
-	padding-bottom: 170px;
+    overflow:auto;
+    padding-bottom: 10px;
 }  
 
-
-
 .formulas{
-	display:none;
-	overflow:auto;
-	margin-top:-150px;
-	/*height:200px;*/
-	padding-bottom: 170px;
+    display:none;
+    overflow:auto;
+    /* margin-top:-150px;  */
+    /*height:200px;*/
+    padding-bottom: 10px;
 }
 
 .MathJax {
-font-size: 1.5em;
+    font-size: 1.5em;
 }
-	
+
 #footer {
-	position: relative;
-	margin-top: -150px;
-	height: 150px;
-	clear:both;
-	font:16px Arial,sans-serif;
+    position: relative;
+    margin-top: 15px; 
+    height: 150px;
+    clear:both;
+    font:16px Arial,sans-serif;
 } 
+
+.newthing,
+.newpic {
+    display:inline;
+}
+
+.hideafter {
+//    background: red;
+}
+
+li,
+#howto_accordion {
+    text-align: left;
+}
+
